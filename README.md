@@ -1,4 +1,4 @@
-# 🪷 Chùa Online TikTok Live (Đi Chùa Cầu An Online)
+# Chùa Online TikTok Live (Đi Chùa Cầu An Online)
 
 Ứng dụng tương tác livestream TikTok với chủ đề **"Đi Chùa Cầu An - Gõ Mõ - Bốc Quẻ - Công Đức"**. Dự án cho phép kết nối trực tiếp với TikTok Livestream để nhận diện người xem bình luận, thả tim, gửi quà (quét quẻ / gõ mõ / đọc sớ / cập nhật bảng vàng công đức bằng giọng đọc AI TTS tự động).
 
