@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bảng Điều Khiển - Chùa Online TikTok Live</title>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <div class="admin-container">
+    <header>
+      <h1>🛕 Bảng Điều Khiển Chùa Online TikTok Live</h1>
+      <a href="index.html" target="_blank" class="live-link-btn">📺 Mở Màn Hình Live (OBS Overlay)</a>
+    </header>
+
+    <div class="grid-layout">
+      
+      <!-- Card 1: TikTok Live Connection -->
+      <div class="card">
+        <h2>📡 Kết Nối TikTok Live</h2>
+        
+        <div class="status-row">
+          <span>Trạng thái:</span>
+          <div id="status-badge" class="status-badge disconnected">
+            <span class="status-dot"></span>
+            <span id="status-text">Chưa kết nối</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="tiktok-username">TikTok Username (ID kênh đang phát trực tiếp):</label>
+          <input type="text" id="tiktok-username" placeholder="Ví dụ: anh.miinh hoặc tranlich.official">
+        </div>
+
+        <div class="form-group">
+          <label for="tiktok-sessionid">Session ID Cookie (Tùy chọn - Giúp chống bị TikTok chặn IP):</label>
+          <input type="text" id="tiktok-sessionid" placeholder="Dán cookie 'sessionid' từ trình duyệt tiktok.com (nếu có)">
+        </div>
+
+        <div class="btn-group" style="margin-bottom: 12px;">
+          <button id="btn-connect" class="btn btn-primary">🔗 Kết Nối Trực Tiếp</button>
+          <button id="btn-disconnect" class="btn btn-danger" disabled>⏹️ Ngắt Kết Nối</button>
+        </div>
+
+        <!-- Auto Simulation Mode Toggle -->
+        <div style="background: #171c26; padding: 12px; border-radius: 8px; border: 1px solid #2d384e;">
+          <div style="font-weight: 700; font-size: 13px; color: #60a5fa; margin-bottom: 4px;">🎮 Chế Độ Mô Phỏng Livestream Tự Động:</div>
+          <p style="font-size: 11.5px; color: #94a3b8; margin-bottom: 8px;">
+            Nếu bạn chưa bật Live trên TikTok hoặc muốn xem thử người vào chùa quỳ lạy, dâng hoa, gieo quẻ liên tục:
+          </p>
+          <button id="btn-toggle-sim" class="btn btn-gold" style="width: 100%;">▶️ Bật Mô Phỏng Livestream</button>
+        </div>
+      </div>
+
+      <!-- Card 2: Quick Simulator -->
+      <div class="card">
+        <h2>⚡ Trình Test Hiệu Ứng Nhanh (Simulate)</h2>
+
+        <div class="sim-grid">
+          <button class="sim-btn" id="sim-1xu">
+            <span class="title">🪔 Test 1 Xu: Dâng Hương</span>
+            <span class="sub">Thắp nhang trầm bốc khói + vái lạy</span>
+          </button>
+          <button class="sim-btn" id="sim-5xu">
+            <span class="title">🚶 Test 5 Xu: Lên Bục</span>
+            <span class="sub">Đi thảm đỏ lên bục quỳ lạy 3 lạy</span>
+          </button>
+          <button class="sim-btn" id="sim-10xu">
+            <span class="title">📜 Test 10+ Xu: Gieo Quẻ</span>
+            <span class="sub">Lên bục đỏ + Rơi quẻ xăm cát tường</span>
+          </button>
+          <button class="sim-btn" id="sim-50tim">
+            <span class="title">🌸 Test 50 Tim: Dâng Hoa</span>
+            <span class="sub">Mưa hoa sen/hồng + dâng cúng</span>
+          </button>
+          <button class="sim-btn" id="sim-all-bow" style="grid-column: span 2; background: #2f2518; border-color: #d97706;">
+            <span class="title">🔔 Quỳ Lạy Tập Thể (Đại Lễ Toàn Chùa)</span>
+            <span class="sub">Toàn bộ phật tử cùng dập đầu quỳ lạy ngũ thể đầu địa</span>
+          </button>
+          <button class="sim-btn" id="sim-join" style="grid-column: span 2; background: #162a22; border-color: #10b981;">
+            <span class="title">👋 Test Người Xem Vào Live (Cầu An & Chúc Phúc Theo Tên)</span>
+            <span class="sub">Hiện chào đón + đọc lời chúc bình an riêng theo tên thật</span>
+          </button>
+          <button class="sim-btn" id="sim-full-seats" style="grid-column: span 2; background: #4a1212; border-color: #f87171;">
+            <span class="title">🏛️ 1 Click Kín 50/50 Người (Lấp Đầy Toàn Chùa & Khai Mở Đại Lễ)</span>
+            <span class="sub">Lấp đầy ngay 50 bồ đoàn cùng lúc + Toàn thể 50 Phật tử đồng lạy Tam Bảo + Mưa hoa sen vàng</span>
+          </button>
+          <button class="sim-btn" id="sim-51st-devotee" style="grid-column: span 2; background: #232238; border-color: #818cf8;">
+            <span class="title">🚶‍♂️ Test Người Thứ 51 Vào (Xem Hoạt Ảnh Nhường Bồ Đoàn & Nhảy Số)</span>
+            <span class="sub">Người cũ lạy tạ viên mãn bay lên + Người 51 bước lên thảm đỏ an vị + Nhảy số 51 lượt</span>
+          </button>
+          <button class="sim-btn" id="sim-chat" style="grid-column: span 2;">
+            <span class="title">💬 Test Người Mới Vào Đi Từ Giữa Ra Ngồi</span>
+            <span class="sub">Phật tử đi từ thảm đỏ rẽ sang bồ đoàn + hiện lời cầu an</span>
+          </button>
+        </div>
+
+        <!-- Custom Gift Form -->
+        <div style="background: #171a23; padding: 12px; border-radius: 8px; border: 1px solid #2e3547;">
+          <div style="font-weight: 700; font-size: 13px; color: #ffd700; margin-bottom: 8px;">Tự Tạo Lễ Vật Test:</div>
+          <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+            <input type="text" id="custom-name" placeholder="Tên Phật tử" style="flex: 2;">
+            <input type="text" id="custom-gift-name" placeholder="Tên quà (Mũ, Rồng...)" style="flex: 2;">
+            <input type="number" id="custom-coins" placeholder="Số xu" value="10" style="flex: 1;">
+          </div>
+          <button id="btn-custom-gift" class="btn btn-gold" style="width: 100%;">🎁 Kích Hoạt Dâng Quà Này</button>
+        </div>
+      </div>
+
+      <!-- Card 3: Voice & Audio Settings -->
+      <div class="card">
+        <h2>🔊 Cấu Hình Giọng Đọc & Âm Thanh</h2>
+
+        <div class="form-group">
+          <label for="tts-voice">Giọng Đọc Chúc Phúc AI (Edge-TTS Tiếng Việt):</label>
+          <select id="tts-voice">
+            <option value="vi-VN-HoaiMyNeural">Hoài My (Nữ - Truyền cảm, ngọt ngào, dịu dàng)</option>
+            <option value="vi-VN-NamMinhNeural">Nam Minh (Nam - Trầm ấm, trang nghiêm đạo vị)</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+          <input type="checkbox" id="tts-enabled" checked style="width: 18px; height: 18px; accent-color: #ffd700;">
+          <label for="tts-enabled" style="margin-bottom: 0; cursor: pointer; color: #fff;">Bật Giọng Đọc Tự Động Xướng Tên & Lời Chúc</label>
+        </div>
+
+        <div class="form-group">
+          <label for="bgm-track">Giai Điệu Nhạc Thiền Tịnh Tâm:</label>
+          <select id="bgm-track">
+            <option value="zen_guzheng" selected>Đàn Tranh & Tiếng Nước Chảy (meditation_guzheng - Luôn chạy mặc định)</option>
+            <option value="gentle_flute">Sáo Trúc & Chuông Xoay Tịnh Tâm (Nhẹ nhàng, êm dịu nhất)</option>
+            <option value="singing_bowl">Chuông Chùa & Thiền Tông Trầm Ấm</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="bgm-volume">Âm Lượng Nhạc Thiền Nền (BGM):</label>
+          <input type="range" id="bgm-volume" min="0" max="1" step="0.05" value="0.25" style="width: 100%; accent-color: #ffd700;">
+        </div>
+
+        <div class="form-group">
+          <label for="mo-interval">Tốc Độ Gõ Mõ Tụng Kinh (giây / tiếng):</label>
+          <input type="number" id="mo-interval" value="3.2" step="0.5" min="1.5" max="8.0">
+        </div>
+
+        <div class="btn-group">
+          <button id="btn-save-config" class="btn btn-primary">💾 Lưu Cấu Hình</button>
+          <button id="btn-test-voice" class="btn btn-secondary">🔊 Thử Giọng Đọc</button>
+        </div>
+      </div>
+
+      <!-- Card 4: Leaderboard & Logs -->
+      <div class="card">
+        <h2>📊 Quản Lý Bảng Xếp Hạng & Sự Kiện</h2>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <span style="font-size: 13px; color: #9eaab7;">Bảng xếp hạng "Tấm Lòng Thành":</span>
+          <button id="btn-reset-lb" class="btn btn-danger" style="padding: 6px 12px; font-size: 12px;">🔄 Làm Mới BXH</button>
+        </div>
+
+        <label>Nhật Ký Sự Kiện Trực Tiếp:</label>
+        <div class="log-box" id="event-logs"></div>
+
+        <div style="margin-top: 14px; padding: 10px; background: #161a24; border-radius: 6px; font-size: 12px; color: #a2b0be;">
+          💡 <b>Mẹo Kết Nối TikTok:</b><br>
+          - Bắt buộc kênh phải <b>ĐANG PHÁT TRỰC TIẾP</b> trên ứng dụng TikTok thì mới kết nối được.<br>
+          - Nếu TikTok yêu cầu xác minh, copy cookie <code>sessionid</code> từ trình duyệt máy tính dán vào ô trên.
+        </div>
+      </div>
+
+      <!-- Card 5: Anti-Detection & Anti-Static Control -->
+      <div class="card" style="grid-column: span 2; border: 1px solid #10b981; background: #111a18;">
+        <h2 style="color: #34d399;">🛡️ Chống Quét Bản Quyền & Né Hạn Chế TikTok Live (Anti-Static & OCR Bypass)</h2>
+        
+        <p style="font-size: 13px; color: #94a3b8; margin-bottom: 14px;">
+          TikTok Live tự động quét và chặn hiển thị đối với các phiên live <b>quá tĩnh (không có camera thật)</b> hoặc có <b>từ ngữ kêu gọi xu/coin</b>. Hãy dùng các công cụ dưới đây để stream luôn đạt chuẩn nguyên tác:
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-bottom: 16px;">
+          <button id="btn-toggle-cards" class="btn btn-secondary" style="background: #1e293b; border-color: #f59e0b; color: #fbbf24;">
+            👁️ Ẩn / Hiện Bảng Dâng Lễ Dưới Cùng
+          </button>
+          <button id="btn-toggle-halo" class="btn btn-secondary" style="background: #1e293b; border-color: #10b981; color: #34d399;">
+            ✨ Bật / Tắt Hào Quang Phật Xoay Động
+          </button>
+          <button id="btn-toggle-petals" class="btn btn-secondary" style="background: #1e293b; border-color: #ec4899; color: #f472b6;">
+            🌸 Bật / Tắt Cánh Sen Rơi Tự Nhiên
+          </button>
+        </div>
+
+        <div style="background: #064e3b; border: 1px solid #059669; padding: 12px 14px; border-radius: 8px; font-size: 13px; color: #d1fae5; line-height: 1.6;">
+          <b>🔑 3 Quy Tắc Vàng Giúp Phiên Live Luôn Lên Xu Hướng & Không Bao Giờ Bị Gậy:</b><br>
+          1. <b>Bật Micro trong TikTok Live Studio:</b> Dù mở nhỏ, hãy bật mic máy tính để thu tiếng gõ mõ thật, tiếng niệm Phật, hoặc thỉnh thoảng nói lời chào người xem. AI của TikTok luôn phân loại luồng có giọng nói thật là <i>Nội Dung Gốc (Original Stream)</i>.<br>
+          2. <b>Thêm 1 ô Camera nhỏ ở góc (PIP - Picture in Picture):</b> Trong TikTok Live Studio, thêm nguồn Camera quay góc bàn tay gõ mõ, xâu chuỗi tràng hạt hoặc góc phòng. Chỉ cần có 1 khung camera thật cử động, TikTok 100% bỏ qua mọi quét tự động.<br>
+          3. <b>Nếu bị thông báo "Hạn chế hiển thị do nội dung sao chép":</b> Bấm ngay nút <b>[Khiếu nại]</b> và điền: <i>"Kính gửi đội ngũ hỗ trợ TikTok, đây là phiên livestream tu tập cầu an trực tiếp do tôi tự sản xuất và tương tác thời gian thực với đại chúng. Không phải nội dung sao chép hay phát lại. Kính đề nghị hỗ trợ mở lại đề xuất. Xin cảm ơn!"</i> (Thường mở lại sau 5-10 phút).
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

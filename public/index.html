@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chùa Online TikTok Live - Đi Chùa Cầu An</title>
+  <link rel="stylesheet" href="css/live.css">
+</head>
+<body>
+
+  <!-- 9:16 Live Canvas Container -->
+  <div id="live-viewport">
+    
+    <!-- Top Status Bar: Audio status & Sangha counter -->
+    <div id="top-status-bar">
+      <div id="audio-pill">🎵 Nhạc Đàn Tranh Thiền: Bật</div>
+      <div id="sangha-pill">🌸 Đạo Tràng: <span id="sangha-count">16</span>/50 Bồ Đoàn • Tổng: 16 Lượt Lễ</div>
+    </div>
+
+    <!-- Atmospheric Particle & Light Canvas -->
+    <canvas id="fx-canvas"></canvas>
+
+    <!-- Devotees, Carpet & Altar Stage -->
+    <div id="temple-stage"></div>
+
+    <!-- Top Royal Banner Announcement -->
+    <div id="top-banner-container">
+      <div class="share-pill">bởi đại chúng đã chia sẻ buổi lễ cầu an</div>
+      <div class="royal-announcement-card">
+        <div class="royal-corner tl"></div>
+        <div class="royal-corner tr"></div>
+        <div class="royal-corner bl"></div>
+        <div class="royal-corner br"></div>
+        <div class="announcement-text" id="royal-banner-text">
+          <span class="highlight-name">Dương Tử Linh</span> thành tâm dâng <span class="highlight-gift">Hoa Sen Vàng</span> lên Đức Phật từ bi, cầu cho gia đạo bình an, công danh rực rỡ!
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Action Buttons near Altar -->
+    <div id="altar-quick-actions">
+      <div class="altar-btn" id="btn-quick-bell">🔔 Thỉnh Chuông</div>
+      <div class="altar-prayer-center" id="altar-prayer-text">Nam Mô Bổn Sư Thích Ca Mâu Ni Phật 🙏</div>
+      <div class="altar-btn" id="btn-quick-fortune">📜 Xin Xăm</div>
+      <div class="altar-btn" id="btn-quick-mo">🪵 Gõ Mõ</div>
+    </div>
+
+    <!-- Bottom Action & Donor Panel -->
+    <div id="bottom-action-panel">
+      <!-- Upper row: Recent Donor Pill + Compact Leaderboard -->
+      <div class="donor-leaderboard-row">
+        <div class="recent-donor-box" id="recent-donor-pill">
+          <span class="dot-gold"></span>
+          <span class="donor-name" id="recent-donor-name">Tiến Trương</span>
+          <span class="donor-score" id="recent-donor-score">Công đức: 5.043 CĐ</span>
+        </div>
+        <div class="compact-leaderboard" id="compact-lb-box">
+          <div class="clb-title">TẤM LÒNG THÀNH</div>
+          <div class="clb-list" id="clb-list-container">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Spiritual Blessing Action Cards (Safe from TikTok OCR) -->
+      <div class="donation-cards-row" id="donation-cards-row">
+        <div class="donate-card">
+          <div class="coin-val">TÂM THÀNH KÍNH</div>
+          <div class="action-label">🔥 Dâng Hương</div>
+        </div>
+        <div class="donate-card">
+          <div class="coin-val">HOAN HỶ CẦU AN</div>
+          <div class="action-label">🏮 Cầu Phúc</div>
+        </div>
+        <div class="donate-card">
+          <div class="coin-val">CÔNG ĐỨC VÔ LƯỢNG</div>
+          <div class="action-label">🪷 Dâng Hoa Sen</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Auspicious Fortune Scroll Modal (Gieo Quẻ Xăm) -->
+    <div id="fortune-overlay">
+      <div class="fortune-scroll">
+        <div class="fortune-title" id="fortune-title">Quẻ Số 1 - Thượng Thượng Cát</div>
+        <div class="fortune-theme" id="fortune-theme">Long Môn Hóa Rồng (Công Danh Đỗ Đạt)</div>
+        <div class="fortune-divider"></div>
+        <div class="fortune-poem" id="fortune-poem">
+          Đầu cành hoa nở ánh bình minh
+          Bảng vàng đề danh chí toại tình
+          Đèn sách mười năm nay đắc ngộ
+          Công thành danh toại rạng quang minh.
+        </div>
+        <div class="fortune-meaning-box">
+          <div class="label">Ý Nghĩa Quẻ:</div>
+          <div class="text" id="fortune-meaning">Thi cử đỗ đạt, công danh thăng tiến rực rỡ, được quý nhân phù trợ!</div>
+        </div>
+        <div class="fortune-blessing" id="fortune-blessing">
+          Nguyện Đức Phật từ bi gia hộ vạn sự như ý, công thành danh toại! Nam Mô A Di Đà Phật!
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/live.js"></script>
+</body>
+</html>

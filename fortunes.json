@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "title": "Quẻ Số 1 - Thượng Thượng Cát",
+    "theme": "Long Môn Hóa Rồng (Công Danh Đỗ Đạt)",
+    "poem": "Đầu cành hoa nở ánh bình minh\nBảng vàng đề danh chí toại tình\nĐèn sách mười năm nay đắc ngộ\nCông thành danh toại rạng quang minh.",
+    "meaning": "Thi cử đỗ đạt cao, công danh sự nghiệp thăng tiến vù vù, được quý nhân đề bạt.",
+    "blessing": "Nguyện cho thí chủ học hành đỗ đạt, thi cử điểm cao, công danh rạng rỡ, bảng vàng vinh quy!"
+  },
+  {
+    "id": 2,
+    "title": "Quẻ Số 2 - Đại Cát",
+    "theme": "Phú Quý Tự Lai (Tài Lộc Dồi Dào)",
+    "poem": "Cửa thiền thanh tịnh phúc lành sinh\nBuôn bán hanh thông lợi phát nhanh\nVốn một lời mười tiền bạc tiến\nGia trang thịnh vượng lộc thơm lành.",
+    "meaning": "Kinh doanh phát tài, buôn may bán đắt, tài lộc tự tìm đến gõ cửa.",
+    "blessing": "Nguyện cầu thí chủ tiền vô như nước, buôn may bán đắt, kinh doanh thuận buồm xuôi gió!"
+  },
+  {
+    "id": 3,
+    "title": "Quẻ Số 3 - Thượng Cát",
+    "theme": "Phật Quang Phổ Chiếu (Bình An Sức Khỏe)",
+    "poem": "Từ bi tế độ vạn muôn phương\nÁnh sáng kim thân rạng cát tường\nBệnh tật tiêu trừ thân thể khỏe\nMột đời an lạc ngát mùi hương.",
+    "meaning": "Thân tâm an lạc, tai qua nạn khỏi, sức khỏe dồi dào, gia đạo bình yên.",
+    "blessing": "Cầu chúc thí chủ tai qua nạn khỏi, sức khỏe dồi dào, tâm an trí sáng, bách bệnh tiêu tan!"
+  },
+  {
+    "id": 4,
+    "title": "Quẻ Số 4 - Thượng Thượng Cát",
+    "theme": "Nguyệt Lão Se Duyên (Tình Duyên Viên Mãn)",
+    "poem": "Trăm năm tơ tóc kết duyên lành\nChỉ thắm kim ngân rạng bức tranh\nÝ hợp tâm đầu người tri kỷ\nSớm ngày loan phượng đón duyên anh.",
+    "meaning": "Sớm gặp được ý trung nhân, tình cảm mặn nồng son sắt, gia đạo ấm êm hạnh phúc.",
+    "blessing": "Nguyện chúc thí chủ sớm tìm được lương duyên, tình duyên viên mãn, trăm năm hạnh phúc!"
+  },
+  {
+    "id": 5,
+    "title": "Quẻ Số 5 - Đại Cát",
+    "theme": "Quý Nhân Tương Trợ (Hanh Thông Mọi Sự)",
+    "poem": "Ra ngoài ắt gặp quý nhân phò\nTrắc trở mây tan hết lắng lo\nChuyện khó hóa nghèo thành thịnh đạt\nĐường đời thênh thang rộng mở to.",
+    "meaning": "Mọi khó khăn đều có người tốt tương trợ hóa giải, bước đường tương lai rạng ngời rộng mở.",
+    "blessing": "Cầu chúc thí chủ tứ phương gặp quý nhân nâng đỡ, vạn sự hanh thông, bước ra đường gặp may mắn!"
+  },
+  {
+    "id": 6,
+    "title": "Quẻ Số 6 - Thượng Cát",
+    "theme": "Gia Đạo An Khang (Gia Đình Thịnh Vượng)",
+    "poem": "Cây lành quả ngọt rợp hiên nhà\nCon cháu hiếu hòa tiếng hát ca\nPhúc ấm tiền nhân còn để lại\nMột nhà hòa thuận lộc đầy hoa.",
+    "meaning": "Gia đình yên ấm thuận hòa, trên kính dưới nhường, phúc lộc trường tồn bền vững.",
+    "blessing": "Nguyện cho gia quyến thí chủ trong ấm ngoài êm, phúc lộc thọ tràn đầy, an khang trường thịnh!"
+  },
+  {
+    "id": 7,
+    "title": "Quẻ Số 7 - Thượng Thượng Cát",
+    "theme": "Tâm Thành Sở Nguyện (Cầu Được Ước Thấy)",
+    "poem": "Thành tâm dâng nén khói hương trầm\nTam Bảo chứng minh tấc dạ thâm\nCầu tài đắc tài như ý nguyện\nTrời cao gia hộ thấu tình thâm.",
+    "meaning": "Cầu tài đắc tài, cầu lộc đắc lộc, mọi ước nguyện ấp ủ bấy lâu nay đều thành hiện thực.",
+    "blessing": "Cầu cho sở cầu như ý, sở nguyện tòng tâm, tâm tưởng sự thành, vạn điều may mắn tựu hội!"
+  },
+  {
+    "id": 8,
+    "title": "Quẻ Số 8 - Đại Cát",
+    "theme": "Mở Mang Cơ Đồ (Khởi Sắc Vận May)",
+    "poem": "Đông qua xuân tới rạng hoa mai\nVận hội hanh thông mở rộng tài\nNắm lấy thời cơ vươn cánh lớn\nMột thời vang dội chí anh tài.",
+    "meaning": "Vận may chuyển mình mạnh mẽ, cơ hội lớn mở ra, sự nghiệp bứt phá ngoạn mục.",
+    "blessing": "Chúc thí chủ thời vận hanh thông, công việc thăng hoa rực rỡ, đón nhận cơ hội đổi đời!"
+  }
+]

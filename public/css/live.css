@@ -1,0 +1,758 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Quicksand:wght@500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #050505;
+  font-family: 'Quicksand', sans-serif;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 
+  1080 x 1920 Virtual Canvas Architecture
+  Automatically scales to fit any resolution (OBS 1080x1920, 720x1280, or desktop preview)
+  while keeping 100% crystal-clear font and sprite sizes!
+*/
+#live-viewport {
+  position: absolute;
+  width: 1080px;
+  height: 1920px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(var(--ui-scale, 1));
+  transform-origin: center center;
+  overflow: hidden;
+  background: url('../assets/temple_bg.jpg') center top / cover no-repeat;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.95);
+  transform: translate(-50%, -50%) scale(var(--ui-scale, 1)) translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Dynamic living atmosphere & subtle divine breathing (Optimized 100% GPU Opacity) */
+#live-viewport::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 36%, rgba(255, 220, 120, 0.08) 0%, rgba(255, 180, 50, 0.03) 45%, rgba(0, 0, 0, 0.22) 100%);
+  z-index: 5;
+  animation: divineBreathing 7.5s ease-in-out infinite alternate;
+  transform: translateZ(0);
+}
+
+@keyframes divineBreathing {
+  0% { opacity: 0.65; }
+  50% { opacity: 0.95; }
+  100% { opacity: 0.72; }
+}
+
+/* Canvas for sparks, rays, incense smoke */
+#fx-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1080px;
+  height: 1920px;
+  pointer-events: none;
+  z-index: 10;
+  transform: translateZ(0);
+}
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1080px;
+  height: 1920px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Temple Stage */
+#temple-stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1080px;
+  height: 1920px;
+  z-index: 20;
+  pointer-events: none;
+}
+
+/* ==================== DEVOTEES & MATS ==================== */
+.devotee-seat {
+  position: absolute;
+  transform: translate(-50%, -100%) translateZ(0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.4s ease;
+  z-index: 25;
+  contain: layout style paint;
+  backface-visibility: hidden;
+}
+
+/* Cushion (Bo doan) - 1080p proportions */
+.seat-mat {
+  position: absolute;
+  bottom: -8px;
+  width: 110px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, #8d4f20 0%, #4a280e 70%, #291203 100%);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7), inset 0 3px 6px rgba(255, 215, 0, 0.4);
+  border: 3px solid #d4a359;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+/* VIP Altar Cushion (Bo doan do vang tren buc) */
+.devotee-seat.vip-seat .seat-mat {
+  background: radial-gradient(ellipse at center, #c41818 0%, #750808 70%, #3a0000 100%);
+  border-color: #ffd700;
+  box-shadow: 0 0 18px rgba(255, 215, 0, 0.65), 0 8px 16px rgba(0,0,0,0.85);
+}
+
+/* Empty Mat Glow waiting for real person */
+.devotee-seat.empty .seat-mat {
+  border-color: rgba(255, 215, 0, 0.45);
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
+  opacity: 0.88;
+}
+
+.devotee-seat.empty .devotee-sprite-wrap,
+.devotee-seat.empty .devotee-badge {
+  display: none !important;
+}
+
+/* Departing devotee animation (Công đức viên mãn, hoan hỷ nhường bồ đoàn) */
+.devotee-seat.departing .devotee-sprite-wrap,
+.devotee-seat.departing .devotee-badge {
+  animation: devoteeDepart 1.6s ease-out forwards !important;
+  pointer-events: none;
+}
+
+@keyframes devoteeDepart {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  30% {
+    opacity: 0.95;
+    transform: scale(1.04) translateY(-8px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.7) translateY(-32px);
+  }
+}
+
+/* Devotee Sprite - 1080p Scale */
+.devotee-sprite-wrap {
+  position: relative;
+  z-index: 2;
+  transform-origin: bottom center;
+  animation: devoteeBreathe 4s ease-in-out infinite alternate;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  transform: translateZ(0);
+}
+
+.devotee-img {
+  display: block;
+  width: 95px;
+  height: auto;
+  transition: opacity 0.2s ease;
+  transform: translateZ(0);
+}
+
+.devotee-img.bowing {
+  display: none;
+  width: 105px;
+}
+
+/* Reverent Prostration Animation (Lạy về phía trước hướng lên Tam Bảo) */
+.devotee-seat.bowing .devotee-img.kneeling {
+  display: none;
+}
+
+.devotee-seat.bowing .devotee-img.bowing {
+  display: block !important;
+}
+
+.devotee-seat.bowing .devotee-sprite-wrap {
+  animation: reverentProstration 2.2s cubic-bezier(0.25, 0.8, 0.25, 1) forwards !important;
+}
+
+.devotee-seat.bowing .devotee-badge {
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+@keyframes devoteeBreathe {
+  0% { transform: scaleY(1); }
+  100% { transform: scaleY(1.02); }
+}
+
+@keyframes reverentProstration {
+  0% { transform: scale(1, 1); }
+  20% { transform: scale(1.02, 0.9) translateY(4px); }
+  40% { transform: scale(1.04, 0.8) translateY(8px); }
+  75% { transform: scale(1.04, 0.8) translateY(8px); }
+  90% { transform: scale(1.02, 0.92) translateY(4px); }
+  100% { transform: scale(1, 1); }
+}
+
+/* Traveling Devotee */
+.traveling-devotee {
+  position: absolute;
+  z-index: 35;
+  transform: translate(-50%, -100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.traveling-devotee .devotee-sprite-wrap {
+  animation: walkStep 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes walkStep {
+  0% { transform: translateY(0) rotate(-1.5deg); }
+  100% { transform: translateY(-5px) rotate(1.5deg); }
+}
+
+/* Avatar & Real Name Badge - Always Visible Above Head */
+.devotee-badge {
+  position: static;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(18, 14, 10, 0.94);
+  border: 1.5px solid rgba(230, 180, 80, 0.95);
+  border-radius: 20px;
+  padding: 3px 10px 3px 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.85);
+  white-space: nowrap;
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #fff;
+  z-index: 50;
+  pointer-events: none;
+  transform-origin: bottom center;
+}
+
+.devotee-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1.5px solid #ffd700;
+  object-fit: cover;
+}
+
+.devotee-name {
+  max-width: 125px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #fff7d6;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+
+/* Chat Speech Bubble - 1080p Scale */
+.speech-bubble {
+  position: absolute;
+  bottom: 100%;
+  margin-bottom: 42px;
+  background: #ffffff;
+  color: #2b1f14;
+  font-size: 19px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.55);
+  white-space: nowrap;
+  max-width: 320px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  z-index: 100;
+  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px;
+  border-style: solid;
+  border-color: #ffffff transparent transparent transparent;
+}
+
+/* Gift Bubble */
+.gift-bubble {
+  position: absolute;
+  bottom: 100%;
+  margin-bottom: 75px;
+  background: linear-gradient(135deg, #b81414, #ff4d4d);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 800;
+  padding: 6px 16px;
+  border-radius: 16px;
+  border: 1.5px solid #ffeb3b;
+  box-shadow: 0 0 16px rgba(255, 77, 77, 0.8);
+  white-space: nowrap;
+  z-index: 105;
+  animation: floatUp 2.0s forwards;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.4) translateY(15px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  80% { transform: translateY(-24px); opacity: 1; }
+  100% { transform: translateY(-40px); opacity: 0; }
+}
+
+/* Ceremony Walker */
+.walking-ceremony-devotee {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ==================== TOP ROYAL BANNER ==================== */
+#top-banner-container {
+  position: absolute;
+  top: 45px;
+  left: 28px;
+  right: 28px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.share-pill {
+  background: rgba(30, 20, 10, 0.9);
+  border: 1.5px solid #d4af37;
+  border-radius: 20px;
+  padding: 6px 24px;
+  font-size: 19px;
+  font-weight: 700;
+  color: #ffde7a;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+}
+
+.share-pill::before {
+  content: '◀';
+  font-size: 14px;
+  color: #ff9800;
+}
+
+.royal-announcement-card {
+  width: 100%;
+  background: linear-gradient(180deg, rgba(65, 14, 10, 0.95) 0%, rgba(36, 8, 5, 0.95) 100%);
+  border: 2px solid #e2aa3a;
+  border-radius: 16px;
+  padding: 14px 24px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(226, 170, 58, 0.3);
+  text-align: center;
+  position: relative;
+  animation: bannerGlow 3s infinite alternate;
+}
+
+.royal-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: #ffd700;
+}
+.royal-corner.tl { top: 5px; left: 5px; border-top: 3px solid #ffd700; border-left: 3px solid #ffd700; }
+.royal-corner.tr { top: 5px; right: 5px; border-top: 3px solid #ffd700; border-right: 3px solid #ffd700; }
+.royal-corner.bl { bottom: 5px; left: 5px; border-bottom: 3px solid #ffd700; border-left: 3px solid #ffd700; }
+.royal-corner.br { bottom: 5px; right: 5px; border-bottom: 3px solid #ffd700; border-right: 3px solid #ffd700; }
+
+.announcement-text {
+  font-size: 23px;
+  line-height: 1.45;
+  color: #fff4d0;
+  font-weight: 600;
+}
+
+.announcement-text .highlight-name {
+  color: #ffe677;
+  font-weight: 800;
+}
+
+.announcement-text .highlight-gift {
+  color: #ff8484;
+  font-weight: 800;
+}
+
+@keyframes bannerGlow {
+  0% { border-color: #d4a359; }
+  100% { border-color: #ffe57f; box-shadow: 0 6px 30px rgba(255, 215, 0, 0.45); }
+}
+
+/* ==================== QUICK ACTION PILLS (NEAR ALTAR) ==================== */
+#altar-quick-actions {
+  position: absolute;
+  top: 66.5%; /* Positioned right above the wooden floor / below table */
+  left: 28px;
+  right: 28px;
+  z-index: 45;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: auto;
+}
+
+.altar-btn {
+  background: rgba(35, 15, 10, 0.92);
+  border: 1.5px solid #e0aa38;
+  border-radius: 20px;
+  padding: 6px 18px;
+  font-size: 19px;
+  font-weight: 800;
+  color: #ffde7a;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.7);
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.altar-btn:hover {
+  background: rgba(70, 25, 15, 0.98);
+  transform: scale(1.05);
+}
+
+.altar-prayer-center {
+  background: rgba(18, 12, 9, 0.82);
+  border: 1.5px solid rgba(255, 215, 0, 0.5);
+  border-radius: 20px;
+  padding: 6px 22px;
+  font-size: 19px;
+  color: #ffe57f;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.7);
+}
+
+/* ==================== BOTTOM ACTION & DONOR PANEL ==================== */
+#bottom-action-panel {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Upper row: Recent Donor Pill + Compact Leaderboard */
+.donor-leaderboard-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.recent-donor-box {
+  background: linear-gradient(135deg, rgba(65, 15, 10, 0.94), rgba(35, 8, 5, 0.96));
+  border: 2px solid #d4a359;
+  border-radius: 12px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.7);
+  font-size: 21px;
+  max-width: 60%;
+}
+
+.recent-donor-box .dot-gold {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffd700;
+  box-shadow: 0 0 8px #ffd700;
+  flex-shrink: 0;
+}
+
+.recent-donor-box .donor-name {
+  font-weight: 800;
+  color: #fff7d6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recent-donor-box .donor-score {
+  color: #ff9800;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.compact-leaderboard {
+  background: linear-gradient(180deg, rgba(55, 15, 12, 0.94) 0%, rgba(28, 7, 5, 0.96) 100%);
+  border: 2px solid #d4a359;
+  border-radius: 12px;
+  padding: 10px 16px;
+  width: 320px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.7);
+}
+
+.clb-title {
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  font-weight: 900;
+  color: #ffd666;
+  border-bottom: 1.5px solid rgba(224, 169, 67, 0.4);
+  padding-bottom: 4px;
+  margin-bottom: 6px;
+}
+
+.clb-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.clb-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 17px;
+  color: #eee;
+}
+
+.clb-item .clb-name {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+.clb-item .clb-val {
+  font-weight: 800;
+  color: #ff6b6b;
+}
+
+/* 3 Bottom Action Cards */
+.donation-cards-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.donate-card {
+  flex: 1;
+  background: linear-gradient(180deg, rgba(75, 15, 10, 0.94) 0%, rgba(38, 6, 4, 0.96) 100%);
+  border: 2px solid #dfa238;
+  border-radius: 12px;
+  padding: 12px 8px;
+  text-align: center;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.7);
+}
+
+.donate-card .coin-val {
+  font-size: 18px;
+  font-weight: 800;
+  color: #ffe785;
+}
+
+.donate-card .action-label {
+  font-size: 21px;
+  font-weight: 800;
+  color: #f8c872;
+  margin-top: 3px;
+}
+
+/* ==================== FORTUNE POPUP MODAL (GIEO QUẺ) ==================== */
+#fortune-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1080px;
+  height: 1920px;
+  background: rgba(0, 0, 0, 0.88);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+#fortune-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.fortune-scroll {
+  width: 820px;
+  background: linear-gradient(180deg, #fef4df 0%, #fae2b8 100%);
+  border: 6px solid #b81414;
+  outline: 4px solid #e0aa38;
+  border-radius: 20px;
+  padding: 32px 28px;
+  color: #4a0c0c;
+  box-shadow: 0 16px 45px rgba(0,0,0,0.85), 0 0 45px rgba(255, 215, 0, 0.7);
+  text-align: center;
+  transform: scale(0.7) translateY(60px);
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#fortune-overlay.active .fortune-scroll {
+  transform: scale(1) translateY(0);
+}
+
+.fortune-title {
+  font-family: 'Cinzel', serif;
+  font-size: 34px;
+  font-weight: 900;
+  color: #a01010;
+  margin-bottom: 4px;
+}
+
+.fortune-theme {
+  font-size: 24px;
+  font-weight: 800;
+  color: #794d07;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.fortune-divider {
+  width: 80%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #b81414, transparent);
+  margin: 0 auto 18px auto;
+}
+
+.fortune-poem {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 26px;
+  line-height: 1.6;
+  color: #3b1414;
+  white-space: pre-line;
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+
+.fortune-meaning-box {
+  background: rgba(184, 20, 20, 0.08);
+  border-left: 5px solid #b81414;
+  padding: 10px 18px;
+  text-align: left;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.fortune-meaning-box .label {
+  font-size: 18px;
+  font-weight: 800;
+  color: #8f1212;
+  text-transform: uppercase;
+}
+
+.fortune-meaning-box .text {
+  font-size: 20px;
+  color: #4b1f1f;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.fortune-blessing {
+  font-size: 22px;
+  font-weight: 700;
+  color: #b81414;
+  line-height: 1.45;
+  margin-top: 10px;
+}
+
+/* Top Status Bar: Sound control & Sangha count */
+#top-status-bar {
+  position: absolute;
+  top: 14px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 99;
+  pointer-events: none;
+}
+
+#audio-pill, #sangha-pill {
+  pointer-events: auto;
+  background: rgba(18, 10, 6, 0.92);
+  border: 1.5px solid rgba(223, 162, 56, 0.55);
+  border-radius: 18px;
+  padding: 6px 14px;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #ffd700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+  transform: translateZ(0);
+}
+
+#audio-pill {
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+#audio-pill:hover {
+  background: rgba(45, 20, 8, 0.9);
+  border-color: #ffd700;
+  transform: scale(1.03);
+}
+
+#sangha-pill.full {
+  background: rgba(110, 20, 10, 0.88);
+  border-color: #ffd700;
+  color: #ffe685;
+  animation: fullSanghaPulse 2s infinite alternate;
+}
+
+@keyframes fullSanghaPulse {
+  0% { transform: scale(1.0); box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); }
+  100% { transform: scale(1.04); box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+}
