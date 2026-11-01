@@ -7,12 +7,14 @@
 ## 📸 Demo Giao Diện Ứng Dụng
 
 <p align="center">
-  <img src="demo.png" alt="Demo Live TikTok Đi Chùa Cầu An" width="85%" style="border-radius: 8px; margin-bottom: 12px;"/>
+  <b>Màn hình Live Stream thực tế (Tỷ lệ khung dọc điện thoại / OBS):</b><br/>
+  <img src="demo.png" alt="Demo Live TikTok Đi Chùa Cầu An" width="340" style="border-radius: 12px; box-shadow: 0 6px 18px rgba(0,0,0,0.18); margin: 10px 0 20px 0;"/>
 </p>
 
 <p align="center">
-  <img src="demo2.png" alt="Demo Bốc Quẻ & Hiệu Ứng" width="48%" style="border-radius: 8px; margin-right: 2%;"/>
-  <img src="demo3.png" alt="Demo Bảng Điều Khiển Admin" width="48%" style="border-radius: 8px;"/>
+  <b>Giao diện Bốc Quẻ, Bảng Vàng & Bảng Điều Khiển Admin:</b><br/>
+  <img src="demo2.png" alt="Demo Bốc Quẻ & Hiệu Ứng" width="49%" style="border-radius: 8px; margin-right: 1%; box-shadow: 0 4px 12px rgba(0,0,0,0.12);"/>
+  <img src="demo3.png" alt="Demo Bảng Điều Khiển Admin" width="49%" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.12);"/>
 </p>
 
 ---
