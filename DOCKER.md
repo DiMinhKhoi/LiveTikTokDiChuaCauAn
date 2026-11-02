@@ -6,7 +6,7 @@ Trong thư mục dự án, chạy:
 docker compose up --build -d
 ```
 
-Mở màn hình live tại http://localhost:3000/index.html và trang quản trị tại http://localhost:3000/admin.html. Muốn đổi cổng trên máy chủ, đặt `APP_PORT` trước khi chạy Compose. Ví dụ trong PowerShell: `$env:APP_PORT=3001; docker compose up --build -d`.
+Mở màn hình live tại http://localhost:3000/index.html và trang quản trị tại http://localhost:3000/admin (hoặc `/admin.html`). Muốn đổi cổng trên máy chủ, đặt `APP_PORT` trước khi chạy Compose. Ví dụ trong PowerShell: `$env:APP_PORT=3001; docker compose up --build -d`.
 
 ```sh
 docker compose logs -f app
