@@ -1,0 +1,12 @@
+services:
+  app:
+    build: .
+    ports:
+      - "${APP_PORT:-3000}:3000"
+    volumes:
+      - audio_cache:/app/public/audio_cache
+    restart: unless-stopped
+    init: true
+
+volumes:
+  audio_cache:

@@ -1,0 +1,18 @@
+# Dependencies and local package-manager files
+node_modules/
+pnpm-lock.yaml
+
+# Generated audio
+public/audio_cache/
+out.mp3
+
+# Local configuration and logs
+.env
+.env.*
+!.env.example
+*.log
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+.venv/
